@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <script src="./js/vue.min.js"></script>
+    <script src="./js/axios.min.js"></script>
 </head>
 <body>
 <div id="app">
@@ -22,7 +23,12 @@
         },
         methods: {
             show: function () {
-                alert("run..." + this.message)
+                axios.get('http://127.0.0.1/api/weixin/index/accessToken').then(
+                    function (result) {
+                        console.log(result)
+                    }
+                )
+                // alert("run..." + this.message)
             }
         }
     })
