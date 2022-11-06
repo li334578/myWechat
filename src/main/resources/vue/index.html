@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-on="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="./js/vue.min.js"></script>
+</head>
+<body>
+<div id="app">
+    <label>
+        <input v-model="message"/>
+    </label>
+    <p>{{ message }}</p>
+    <button v-on:click="show">点我</button>
+</div>
+
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            message: 'Hello world'
+        },
+        methods: {
+            show: function () {
+                alert("run..." + this.message)
+            }
+        }
+    })
+</script>
+</body>
+</html>
