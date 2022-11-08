@@ -66,6 +66,10 @@ public class ResultBean<T> implements Serializable {
         return new ResultBean<T>(data).setCode(FAIL);
     }
 
+    public static <T> ResultBean<T> error(String message) {
+        return new ResultBean<T>().setMsg(message).setCode(FAIL);
+    }
+
     public static <T> ResultBean<T> error(T data, String message) {
         return new ResultBean<T>(data).setCode(FAIL).setMsg(message);
     }

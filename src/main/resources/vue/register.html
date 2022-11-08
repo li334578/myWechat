@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>注册页</title>
+    <script src="./js/vue.min.js"></script>
+    <script src="./js/axios.min.js"></script>
+    <script src="./js/element_ui/index.js"></script>
+    <link rel="stylesheet" href="./js/element_ui/index.css"/>
+    <style>
+        .register {
+            width: 100%;
+            height: 740px;
+            /*background: url("../assets/images/bg1.png") no-repeat;*/
+            background-size: cover;
+            overflow: hidden;
+        }
+
+        .register-wrap {
+            /*background: url("../assets/images/login_bg.png") no-repeat;*/
+            /*background-size: cover;*/
+            width: 400px;
+            height: 500px;
+            margin: 215px auto;
+            overflow: hidden;
+            padding-top: 10px;
+            line-height: 40px;
+        }
+        h3 {
+            color: #0babeab8;
+            font-size: 24px;
+        }
+
+        hr {
+            background-color: #444;
+            margin: 20px auto;
+        }
+
+        a {
+            text-decoration: none;
+            color: #aaa;
+            font-size: 15px;
+        }
+
+        a:hover {
+            color: coral;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    <div class="register">
+        <div class="register-wrap">
+            <el-form label-width="80px" v-model="user">
+                <h3>注册</h3>
+                <hr>
+                <el-form-item label="用户名">
+                    <el-input placeholder="请输入用户名" v-model="user.username" prefix-icon></el-input>
+                </el-form-item>
+                <el-form-item label="密码">
+                    <el-input show-password v-model="user.password" placeholder="请输入密码"></el-input>
+                </el-form-item>
+                <el-form-item label="手机号">
+                    <el-input placeholder="请输入手机号" v-model="user.phone" prefix-icon></el-input>
+                </el-form-item>
+                <el-form-item label="邮箱">
+                    <el-input placeholder="请输入邮箱" v-model="user.email" prefix-icon></el-input>
+                </el-form-item>
+                <a href="./index.html">登录</a>
+                <div>
+                    <el-button type="primary" icon="el-icon-upload" @click="register()">注 册</el-button>
+                </div>
+            </el-form>
+        </div>
+    </div>
+</div>
+
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            user: {
+                username: "",
+                password: "",
+                phone: "",
+                email: ""
+            }
+        },
+        methods: {
+            register: function () {
+                console.log(this.user)
+                axios.post('http://localhost/authenticate/register',
+                    this.user
+                ).then(
+                    (res) => {
+                        console.log(res)
+                        const data = res.data;
+                        if (data.code === 1) {
+                            alert(data.msg)
+                        } else {
+                            this.user.username = ""
+                            this.user.password = ""
+                            this.user.phone = ""
+                            this.user.email = ""
+                            alert("注册成功!")
+                        }
+                    }
+                )
+            }
+        }
+    })
+</script>
+</body>
+</html>

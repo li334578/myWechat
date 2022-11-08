@@ -22,25 +22,30 @@ public class PageBean<T> implements Serializable {
     /**
      * 当前页
      */
+    @TableField(exist = false)
     private Integer current;
 
     /**
      * 起始位置
      */
+    @TableField(exist = false)
     private Integer start;
 
     /**
      * 查询长度
      */
+    @TableField(exist = false)
     private Integer size;
 
     /**
      * 返回数据
      */
+    @TableField(exist = false)
     private List<T> data;
 
     /**
      * 返回总数
      */
+    @TableField(exist = false)
     private Integer total;
 }

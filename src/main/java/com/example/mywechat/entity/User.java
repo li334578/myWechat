@@ -16,7 +16,7 @@ import lombok.Data;
  * @author liwenbo
  * @since 2022-11-07 22:14:28
  */
-@TableName("User")
+@TableName("tb_user")
 @EqualsAndHashCode(callSuper = false)
 @Data
 public class User extends PageBean<User> implements Serializable {
