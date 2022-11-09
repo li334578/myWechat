@@ -26,6 +26,23 @@
             padding-top: 10px;
             line-height: 40px;
         }
+
+        .dialog-content {
+            position: relative;
+            margin: 0 auto;
+            width: 300px;
+            font-size: 24px;
+        }
+
+        .dialog-content .text {
+            width: 80%;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            margin-top: -35px;
+            transform: translateX(-50%);
+        }
+
         h3 {
             color: #0babeab8;
             font-size: 24px;
@@ -73,6 +90,18 @@
             </el-form>
         </div>
     </div>
+    <el-dialog :visible.sync="dialogFormVisible" center width="20%" top="18%">
+        <div slot="title">注册成功</div>
+        <div class="dialog-content">
+            <div class="text">
+                注册成功,欢迎登录!
+            </div>
+        </div>
+        <div slot="footer">
+            <el-button @click="dialogFormVisible = false">取 消</el-button>
+            <el-button type="primary" @click="jumpLoginPage()">去 登 录</el-button>
+        </div>
+    </el-dialog>
 </div>
 
 <script>
@@ -84,11 +113,11 @@
                 password: "",
                 phone: "",
                 email: ""
-            }
+            },
+            dialogFormVisible: false
         },
         methods: {
             register: function () {
-                console.log(this.user)
                 axios.post('http://localhost/authenticate/register',
                     this.user
                 ).then(
@@ -102,10 +131,14 @@
                             this.user.password = ""
                             this.user.phone = ""
                             this.user.email = ""
-                            alert("注册成功!")
+                            this.dialogFormVisible = true
                         }
                     }
                 )
+            },
+            jumpLoginPage: function () {
+                this.dialogFormVisible = false;
+                window.location.href = "./index.html"
             }
         }
     })

@@ -66,7 +66,7 @@
                     <h3>登录</h3>
                     <hr>
                     <el-form-item label="用户名">
-                        <el-input placeholder="请输入用户名" v-model="user.username" prefix-icon></el-input>
+                        <el-input placeholder="请输入用户名" v-model="user.username" prefix-icon="el-icon-date" clearable></el-input>
                     </el-form-item>
                     <el-form-item label="密码">
                         <el-input show-password v-model="user.password" placeholder="请输入密码"></el-input>
@@ -95,6 +95,18 @@
         },
         methods: {
             login: function () {
+                if (this.user.username === "") {
+                    this.$notify.error({
+                        title: '错误',
+                        message: '用户名不能为空'
+                    });
+                }
+                if (this.user.password === "") {
+                    this.$notify.error({
+                        title: '错误',
+                        message: '密码不能为空'
+                    });
+                }
                 axios.get('http://localhost/authenticate/login', {
                     params: {
                         username: this.user.username,
@@ -102,9 +114,12 @@
                     }
                 }).then(
                     (res) => {
-                        const data = res.data;
-                        if (data.code === 1) {
-                            alert(data.msg)
+                        const resp = res.data;
+                        if (resp.code === 1) {
+                            this.$notify.error({
+                                title: '错误',
+                                message: resp.msg
+                            });
                         } else {
                             alert("登录成功!")
                         }
