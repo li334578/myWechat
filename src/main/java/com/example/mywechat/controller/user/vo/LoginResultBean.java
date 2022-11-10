@@ -5,7 +5,7 @@ import lombok.Data;
 
 /**
  * @Date 8/11/2022 0008 上午 11:39
- * @Description TODO
+ * @Description 登录用户的bean
  * @Version 1.0.0
  * @Author liwenbo
  */

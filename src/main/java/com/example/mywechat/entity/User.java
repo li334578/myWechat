@@ -1,14 +1,14 @@
 package com.example.mywechat.entity;
 
-import java.util.Date;
-
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
 import com.example.mywechat.dto.PageBean;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import java.io.Serializable;
-
-import com.baomidou.mybatisplus.annotation.TableName;
-import lombok.EqualsAndHashCode;
-import lombok.Data;
+import java.util.Date;
 
 /**
  * (User)表实体类
@@ -26,6 +26,7 @@ public class User extends PageBean<User> implements Serializable {
     /**
      * 分布式id
      */
+    @TableId(type = IdType.INPUT)
     private Long id;
     /**
      * 用户名

@@ -1,10 +1,9 @@
 package com.example.mywechat.controller.user;
 
 
-import com.example.mywechat.entity.User;
 import com.example.mywechat.service.UserService;
-import org.springframework.web.bind.annotation.*;
-
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
 

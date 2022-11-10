@@ -1,6 +1,7 @@
 package com.example.mywechat.controller.user;
 
 import cn.dev33.satoken.stp.StpUtil;
+import cn.hutool.core.util.IdUtil;
 import cn.hutool.core.util.ReUtil;
 import com.example.mywechat.controller.user.vo.LoginResultBean;
 import com.example.mywechat.dto.ResultBean;
@@ -70,6 +71,8 @@ public class AuthenticateController {
             return ResultBean.error("该用户名已存在");
         }
         user.setPassword(SecurityUtil.encryptionPassword(user.getUsername(), user.getPassword()));
+        long userId = IdUtil.getSnowflake().nextId();
+        user.setId(userId);
         userService.save(user);
         return ResultBean.success();
     }

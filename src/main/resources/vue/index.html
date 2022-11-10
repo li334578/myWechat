@@ -66,13 +66,14 @@
                     <h3>登录</h3>
                     <hr>
                     <el-form-item label="用户名">
-                        <el-input placeholder="请输入用户名" v-model="user.username" prefix-icon="el-icon-date" clearable></el-input>
+                        <el-input placeholder="请输入用户名" v-model="user.username" prefix-icon="el-icon-user"
+                                  clearable></el-input>
                     </el-form-item>
                     <el-form-item label="密码">
-                        <el-input show-password v-model="user.password" placeholder="请输入密码"></el-input>
+                        <el-input show-password v-model="user.password" placeholder="请输入密码"
+                                  prefix-icon="el-icon-key"></el-input>
                     </el-form-item>
                     <router-link to="/">找回密码</router-link>
-                    <!--                    <router-link to="/register">注册账号</router-link>-->
                     <a href="./register.html">注册账号</a>
                     <div>
                         <el-button type="primary" icon="el-icon-upload" @click="login()">登 录</el-button>
@@ -121,7 +122,7 @@
                                 message: resp.msg
                             });
                         } else {
-                            alert("登录成功!")
+                            window.location.href = "./main.html"
                         }
                     }
                 )
