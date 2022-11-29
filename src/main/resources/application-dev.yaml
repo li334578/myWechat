@@ -1,3 +1,9 @@
+
+logging:
+  level:
+    root: info
+server:
+  port: 8080
 spring:
   application:
     name: myWechat
@@ -19,8 +25,6 @@ spring:
   redis:
     host: localhost
     password: root
-  profiles:
-    active: dev
 wx:
   mp:
     aesKey: ''
@@ -72,3 +76,16 @@ sa-token:
   token-style: uuid
   # 是否输出操作日志
   is-log: false
+
+xxl:
+  job:
+    accessToken: ''
+    admin:
+      addresses: http://127.0.0.1:8088/xxl-job-admin
+    executor:
+      address: 'm_wechat'
+      appname: myWechat
+      ip: '192.168.10.20'
+      logpath: /data/applogs/xxl-job/jobhandler
+      logretentiondays: 30
+      port: 9999
